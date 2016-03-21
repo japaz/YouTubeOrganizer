@@ -1,7 +1,7 @@
 {
-  "name": "react-slingshot",
-  "version": "1.2.0",
-  "description": "Starter kit for creating apps with React and Redux",
+  "name": "YouTubeOrganizer",
+  "version": "0.0.1",
+  "description": "Small tool to handle youtube subscriptions",
   "scripts": {
     "prestart": "npm run remove-dist",
     "start": "parallelshell \"npm run lint:tools\" \"npm run test:watch\" \"npm run open:src\"",
@@ -16,15 +16,17 @@
     "test": "cross-env NODE_ENV=test mocha --reporter progress --compilers js:babel-core/register --recursive \"./src/**/*.spec.js\"",
     "test:watch": "npm run test -- --watch"
   },
-  "author": "Cory House",
+  "author": "Jesus Alberto Paz Jimenez",
   "license": "MIT",
   "dependencies": {
     "connect-history-api-fallback": "1.1.0",
+    "material-ui": "0.14.4",
     "object-assign": "4.0.1",
     "react": "0.14.7",
     "react-dom": "0.14.7",
     "react-redux": "4.4.0",
     "react-router": "2.0.0",
+    "react-tap-event-plugin": "0.2.2",
     "redux": "3.3.1"
   },
   "devDependencies": {
