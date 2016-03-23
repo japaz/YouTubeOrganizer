@@ -7,3 +7,7 @@ export function saveFuelSavings(settings) {
 export function calculateFuelSavings(settings, fieldName, value) {
 	return { type: types.CALCULATE_FUEL_SAVINGS, settings, fieldName, value };
 }
+
+export function loadApplicationState(settings) {
+	return {type: types.LOAD_APP_STATE, settings};
+}

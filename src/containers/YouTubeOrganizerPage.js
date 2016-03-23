@@ -8,43 +8,41 @@ import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 import IconButton from 'material-ui/lib/icon-button';
 import Divider from 'material-ui/lib/divider';
-
-
-const tilesData = [
-{
-  img: 'http://www.publicdomainpictures.net/pictures/40000/t2/smooth-fox-terrier-dog.jpg',
-  title: 'Image 1',
-  author: 'Noknow'
-},
-{
-  img: 'http://www.publicdomainpictures.net/pictures/40000/velka/butterfly-on-a-flower-1365009473Xea.jpg',
-  title: 'Image 2',
-  author: 'Noknowa'
-}
-];
+import CircularProgress from 'material-ui/lib/circular-progress';
 
 class YouTubeOrganizerPage extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    appState: PropTypes.object.isRequired
+  };
+
+  componentDidMount(){
+    this.props.actions.loadApplicationState();
+  }
 
   render() {
     return (
       <div>
         <RaisedButton label="Default"/> 
         <Divider />
-        <GridList
-          cellHeight={200}
-          cols={1}>
-          {tilesData.map(tile => (
-            <GridTile
-              key={tile.img}
-              title={tile.title}
-              subtitle={<span>by <b>{tile.author}</b></span>}
-              actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-            >
-              <img src={tile.img} />
-            </GridTile>
-          ))}
+        {this.props.appState.isLoading ? 
+          (<CircularProgress />) :
+          (<GridList
+            cellHeight={200}
+            cols={1}>
+            {this.props.appState.tilesData.map(tile => (
+              <GridTile
+                key={tile.img}
+                title={tile.title}
+                subtitle={<span>by <b>{tile.author}</b></span>}
+                actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+              >
+                <img src={tile.img} />
+              </GridTile>
+            ))}
 
-         </GridList> 
+           </GridList>)
+         }
       </div>
     );
   }
@@ -52,7 +50,7 @@ class YouTubeOrganizerPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    appState: state.fuelSavingsAppState
+    appState: state.YouTubeAppState
   };
 }
 
